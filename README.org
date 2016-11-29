@@ -17,3 +17,4 @@ Here is the result of the function in the ivy window:
 #+CAPTION: Ivy Matlab Code Folding
 #+NAME:   fig:IvyMatlabCodeFolding
 [[https://raw.githubusercontent.com/KirmTwinty/my-emacs/master/img/IvyCodeFolding.png]]
+
