@@ -18,6 +18,40 @@ Here is the result of the function in the ivy window:
 #+NAME:   fig:IvyMatlabCodeFolding
 [[https://raw.githubusercontent.com/KirmTwinty/my-emacs/master/img/IvyCodeFolding.png]]
 
+#+BEGIN_SRC emacs-lisp
+;;
+;; Use IVY to find function definition in MATLAB
+;; Add this script to your .emacs configuration file
+;;
+(defun re-seq (regexp string)
+  "Get a list of all regexp matches in a string"
+  (save-match-data
+    (let ((pos 0)
+          matches)
+      (while (string-match regexp string pos)
+        (push (match-string 0 string) matches)
+        (setq pos (match-end 0)))
+      matches)))
+
+(defun matlab-find-function ()
+  "Find all functions definitions in current MATLAB file."
+  (interactive)
+  (ivy-read "MATLAB functions: "
+	    (reverse (re-seq "^\\s-*function.*$\\|^\\s-*%%.*$" (buffer-string)))
+	    :action (lambda (x)
+		      (with-current-buffer
+			  (progn
+			    (beginning-of-buffer)
+			    (search-forward-regexp x))))))
+(defun matlab-find-function-config ()
+  "For use in `matlab-mode-hook'."
+  (local-set-key (kbd "C-c f") 'matlab-find-function)
+  (local-set-key (kbd "C-c C-f") 'matlab-find-function)
+  ;; more here
+  )
+(add-hook 'matlab-mode-hook 'matlab-find-function-config)
+#+END_SRC
+
 For the documentation, I am using Doxygen, adapted to Matlab. I provide some snippets for yasnippet in the matlab folder for Doxygen patterns that fit Matlab.
 
 
@@ -38,10 +72,13 @@ To do so, I ask DocView to switch to auto-revert-mode so that every time my pdf 
 (add-hook 'doc-view-mode-hook 'auto-revert-mode)  
 #+END_SRC
 
-Finally, we add a hook for exporting the latex to pdf each time we save. This is actually done when I create my document template by adding the following code at the end of the document:
+Finally, we add a hook for exporting the latex to pdf each time we save. This is actually done when I create my document template (yasnippet) by adding the following code at the end of the document:
 #+BEGIN_SRC
 * COMMENT Local Variables
   # Local Variables:
   # eval: (add-hook 'after-save-hook 'org-latex-export-to-pdf t t)
   # End:
 #+END_SRC
+
+The result looks like this:
+[[https://raw.githubusercontent.com/KirmTwinty/my-emacs/master/img/Latex.png]]
