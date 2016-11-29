@@ -1,8 +1,8 @@
 * Table of Contents							:TOC:
  - [[#general-purposes][General Purposes]]
+ - [[#theme][Theme]]
  - [[#matlab][Matlab]]
  - [[#latex][LaTeX]]
- - [[#comment-local-variables][COMMENT Local Variables]]
 
 * General Purposes
 I just wanted to share my Emacs configuration since I feel now productive with it.
@@ -13,6 +13,9 @@ I am actually a PhD student so I use Emacs with different programming environmen
 Most of the resources have been found in other users configuration, I have just used some hacks to fit my needs.
 
 Here is a description of how I use Emacs in my everyday's life.
+* Theme
+I am using the great doom-one theme from https://github.com/hlissner/emacs-doom-theme who did a great job.
+
 * Matlab
 Matlab is one of the software that I used the most. 
 Therefore, I am using the Matlab Mode which works greatly. You can find the source of the code by following this link:  https://sourceforge.net/projects/matlab-emacs/ 
@@ -80,7 +83,6 @@ To do so, I ask DocView to switch to auto-revert-mode so that every time my pdf 
 
 Finally, we add a hook for exporting the latex to pdf each time we save. This is actually done when I create my document template (yasnippet) by adding the following code at the end of the document:
 #+BEGIN_SRC org :eval never
-* COMMENT Local Variables
   # Local Variables:
   # eval: (add-hook 'after-save-hook 'org-latex-export-to-pdf t t)
   # End:

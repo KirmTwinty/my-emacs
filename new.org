@@ -1,0 +1,20 @@
+* Notes from <2016-11-29 mar.>
+  :PROPERTIES: 
+  :EXPORT_FILE_NAME: /home/ttoullie/Dropbox/meetings/export/2016_11_29
+  :END:      
+** Present at meeting
+- [-] Jean
+- [-] Thibaud
+
+** Agenda
+   # Description of the meeting
+- Discuss about the SFT article description that we have to submit.
+
+** Notes
+   # Summary and actions decided
+*** Summary
+*** Actions
+
+
+
+
