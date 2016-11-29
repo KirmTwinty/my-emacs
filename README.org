@@ -1,9 +1,19 @@
 * General Purposes
 I just wanted to share my Emacs configuration since I feel now productive with it.
 The main idea of using Emacs was to make my workflow as simple as possible, mainly by using the same tools for many different things. 
+
 I am actually a PhD student so I use Emacs with different programming environment such as C/C++, Web Development (HTML/CSS/PHP/MySQL/JS), Matlab etc. and also writting reports, notes articles and handling my bibliography.
+
 Most of the resources have been found in other users configuration, I have just used some hacks to fit my needs.
+
 Here is a description of how I use Emacs in my everyday's life.
 * Matlab
 Matlab is one of the software that I used the most. 
+Therefore, I am using the Matlab Mode which works greatly. You can find the source of the code by following this link:  https://sourceforge.net/projects/matlab-emacs/ 
 
+Even if I am using mtags to generate a TAGS file to get my function definitions automatically with Matlab (see https://www.emacswiki.org/emacs/EmacsTags), I found useful to get a list of all functions through Ivy. This is mainly related to the way I code in Matlab. When I implement a GUI, I regroup my functions definition under a group title (defined by "%%"). Therefore, I can simply read my code in Ivy like if I was using some code folding.
+
+Here is the result of the function in the ivy window:
+#+CAPTION: Ivy Matlab Code Folding
+#+NAME:   fig:IvyMatlabCodeFolding
+[[./img/Ivycodefolding.png]]
