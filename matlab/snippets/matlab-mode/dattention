@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: dattention
+# key: dattention
+# --
+%> \attention ${1:message}

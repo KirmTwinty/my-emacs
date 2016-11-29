@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: func
+# expand-env: ((yas/indent-line 'fixed) (yas/wrap-around-region 'nil))
+# --
+function 
+  $1  
+catch $2
+   $3
+end

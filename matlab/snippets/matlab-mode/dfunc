@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# name: dfunc
+# key: dfunc
+# --
+% ======================================================================
+%> @brief ${1:brief}
+%>
+%> ${2:description}
+%>
+%> @param ${3:paramName} ${4:paramDescription}
+%>
+%> @retval ${5:valName} ${6:valDescription}
+% ======================================================================

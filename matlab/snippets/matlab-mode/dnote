@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: dnote
+# key: dnote
+# --
+%> \note ${1:myNote}

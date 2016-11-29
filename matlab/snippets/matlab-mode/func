@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: func
+# key: func
+# --
+function ${1:function_name} (${2:argin})
+  ${3:body}
+end

@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: dfile
+# key: dfile
+# --
+%> @file  ${file}
+%> @brief ${brief}
