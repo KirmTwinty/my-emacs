@@ -1,3 +1,9 @@
+* Table of Contents							:TOC:
+ - [[#general-purposes][General Purposes]]
+ - [[#matlab][Matlab]]
+ - [[#latex][LaTeX]]
+ - [[#comment-local-variables][COMMENT Local Variables]]
+
 * General Purposes
 I just wanted to share my Emacs configuration since I feel now productive with it.
 The main idea of using Emacs was to make my workflow as simple as possible, mainly by using the same tools for many different things. 
@@ -73,11 +79,12 @@ To do so, I ask DocView to switch to auto-revert-mode so that every time my pdf 
 #+END_SRC
 
 Finally, we add a hook for exporting the latex to pdf each time we save. This is actually done when I create my document template (yasnippet) by adding the following code at the end of the document:
-#+BEGIN_SRC
+#+BEGIN_SRC org :eval never
 * COMMENT Local Variables
   # Local Variables:
   # eval: (add-hook 'after-save-hook 'org-latex-export-to-pdf t t)
   # End:
+
 #+END_SRC
 
 The result looks like this:
