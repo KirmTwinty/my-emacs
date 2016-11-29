@@ -16,4 +16,4 @@ Even if I am using mtags to generate a TAGS file to get my function definitions 
 Here is the result of the function in the ivy window:
 #+CAPTION: Ivy Matlab Code Folding
 #+NAME:   fig:IvyMatlabCodeFolding
-[[./img/Ivycodefolding.png]]
+[[https://raw.githubusercontent.com/KirmTwinty/my-emacs/master/img/IvyCodeFolding.png]]
