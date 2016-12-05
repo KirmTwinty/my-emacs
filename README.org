@@ -40,7 +40,7 @@ Here is a description of how I use Emacs in my everyday's life.
 
 ** Coding
 - *autopair.el* 
-- *
+- 
 ** Org specific
 
 - *toc-org.el* [[link]]
