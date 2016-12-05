@@ -21,7 +21,7 @@ Most of the resources have been found in other users configuration, I have just 
 Here is a description of how I use Emacs in my everyday's life.
 * Packages list
 ** Must have
-- *multiple-crsors.el* [[link]]
+- *multiple-cursors.el* [[link]]
 
   For editing multiple lines or patterns at the same time. 
   Really useful for coding in general, particularly for Matlab and HTML
