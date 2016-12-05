@@ -1,7 +1,7 @@
 * Table of Contents							:TOC:
  - [[#general-purposes][General Purposes]]
  - [[#packages-list][Packages list]]
-   - [[#must-have][Must have]]
+   - [[#must-have-][Must have !]]
    - [[#coding][Coding]]
    - [[#org-specific][Org specific]]
    - [[#misc][Misc.]]
@@ -20,7 +20,7 @@ Most of the resources have been found in other users configuration, I have just 
 
 Here is a description of how I use Emacs in my everyday's life.
 * Packages list
-** Must have
+** Must have !
 - *multiple-cursors.el* [[link]]
 
   For editing multiple lines or patterns at the same time. 
