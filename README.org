@@ -3,7 +3,7 @@
  - [[#packages-list][Packages list]]
    - [[#must-have][Must have]]
    - [[#coding][Coding]]
-   - [[#org-specific][Org* specific]]
+   - [[#org-specific][Org specific]]
    - [[#misc][Misc.]]
  - [[#theme][Theme]]
  - [[#yasnippet][Yasnippet]]
@@ -41,7 +41,7 @@ Here is a description of how I use Emacs in my everyday's life.
 ** Coding
 - *autopair.el* 
 - *
-** Org* specific
+** Org specific
 
 - *toc-org.el* [[link]]
   To get a table of content at the beginning of this file when editing README.org files
