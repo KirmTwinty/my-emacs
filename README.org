@@ -61,6 +61,7 @@ Moreover, it is really easy to create your own snippets and then accomodate it t
 * Matlab
 Matlab is one of the software that I used the most. 
 Therefore, I am using the Matlab Mode which works greatly. You can find the source of the code by following this link:  https://sourceforge.net/projects/matlab-emacs/ 
+(Do not forget to add the /toolbox/ folder to your matlab path to get completion in the shell)
 
 Even if I am using mtags to generate a TAGS file to get my function definitions automatically with Matlab (see https://www.emacswiki.org/emacs/EmacsTags), I found useful to get a list of all functions through Ivy (see https://github.com/abo-abo/swiper). This is mainly related to the way I code in Matlab. When I implement a GUI, I regroup my functions definition under a group title (defined by "%%"). Therefore, I can simply read my code in Ivy like if I was using some code folding.
 
@@ -103,7 +104,94 @@ Here is the result of the function in the ivy window:
 (add-hook 'matlab-mode-hook 'matlab-find-function-config)
 #+END_SRC
 
+I have also adapted the completion from the original code to ivy which is more convenient to me.
+#+BEGIN_SRC emacs-lisp
+;;
+;; Use IVY to perform completion from MATLAB's shell
+;;
+(defun matlab-shell-ivy-tab ()
+  "Send [TAB] to the currently running matlab process and retrieve completion back to ivy."
+  (interactive)
+  (if (not matlab-shell-ask-MATLAB-for-completions)
+      (call-interactively 'comint-dynamic-complete-filename)
+    (if (not (matlab-on-prompt-p))
+	(error "Completions not available"))
+    (if nil
+	;; For older versions of MATLAB that don't have TAB
+	;; completion.
+	(call-interactively 'comint-dynamic-complete-filename)
+      ;; Save the old command
+      (goto-char (point-max))
+      (let ((inhibit-field-text-motion t))
+	(beginning-of-line))
+      (re-search-forward comint-prompt-regexp)
+      (let* ((lastcmd (buffer-substring (point) (matlab-point-at-eol)))
+	     (tempcmd lastcmd)
+	     (completions nil)
+	     (limitpos nil))
+	;; search for character which limits completion, and limit command to it
+	(setq limitpos
+	      (if (string-match ".*\\([( /[.,;=']\\)" lastcmd)
+		  (1+ (match-beginning 1))
+		0))
+	(setq lastcmd (substring lastcmd limitpos))
+	;; Whack the old command so we can insert it back later.
+	(delete-region (+ (point) limitpos) (matlab-point-at-eol))
+	;; double every single quote
+	(while (string-match "[^']\\('\\)\\($\\|[^']\\)" tempcmd)
+	  (setq tempcmd (replace-match "''" t t tempcmd 1)))
+	;; collect the list
+	(setq completions (matlab-shell-completion-list tempcmd))
+	(goto-char (point-max))
+	(if (eq (length completions) 1)
+	    ;; If there is only one, then there is an obvious thing to do.
+	    (progn
+	      (insert (car (car completions)))
+	      ;; kill completions buffer if still visible
+	      (matlab-shell-tab-hide-completions))
+	  (let ((try (try-completion lastcmd completions)))
+	    ;; Insert in a good completion.
+	    (cond ((or (eq try nil) (eq try t)
+		       (and (stringp try)
+			    (string= try lastcmd)))
+		   (insert lastcmd)
+		   ;; Before displaying the completions buffer, check to see if
+		   ;; the completions window is already displayed, or if there is
+		   ;; a next window to display.  This determines how to remove the
+		   ;; completions later.
+		   (if (get-buffer-window "*Completions*")
+		       nil ;; Recycle old value of the display flag.
+		     ;; Else, reset this variable.
+		     (setq matlab-shell-window-exists-for-display-completion-flag
+			   ;; Else, it isn't displayed, save an action.
+			   (if (eq (next-window) (selected-window))
+			       ;; If there is no other window, the post action is
+			       ;; to delete.
+			       'delete
+			     ;; If there is a window to display, the post
+			     ;; action is to bury.
+			     'bury)))
+		   ;; (with-output-to-temp-buffer "*Completions*"
+		   ;;   (display-completion-list (mapcar 'car completions) lastcmd)))
+		   (ivy-read (concat "Matlab Completion for " lastcmd ": ") 
+			     completions
+			     :action (lambda (x) (insert
+						  (replace-regexp-in-string lastcmd "" (car x))))))		   
+		  ((stringp try)
+		   (insert try)
+		   (matlab-shell-tab-hide-completions))
+		  (t
+		   (insert lastcmd))))
+	  ))))
+  )
+;; Replace the key by the new function
+(define-key matlab-shell-mode-map (kbd "TAB") 'matlab-shell-ivy-tab)
+
+#+END_SRC
+
 For the documentation, I am using Doxygen, adapted to Matlab. I provide some snippets for yasnippet in the matlab folder for Doxygen patterns that fit Matlab.
+
+
 
 
 * LaTeX
