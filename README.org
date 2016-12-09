@@ -8,6 +8,8 @@
  - [[#theme][Theme]]
  - [[#yasnippet][Yasnippet]]
  - [[#matlab][Matlab]]
+   - [[#functions-summary][Functions Summary]]
+   - [[#ivy-completion-in-shell][Ivy completion in shell]]
  - [[#latex][LaTeX]]
 
 * General Purposes
@@ -59,10 +61,12 @@ Moreover, it is really easy to create your own snippets and then accomodate it t
 
 
 * Matlab
+
 Matlab is one of the software that I used the most. 
 Therefore, I am using the Matlab Mode which works greatly. You can find the source of the code by following this link:  https://sourceforge.net/projects/matlab-emacs/ 
 (Do not forget to add the /toolbox/ folder to your matlab path to get completion in the shell)
 
+** Functions Summary
 Even if I am using mtags to generate a TAGS file to get my function definitions automatically with Matlab (see https://www.emacswiki.org/emacs/EmacsTags), I found useful to get a list of all functions through Ivy (see https://github.com/abo-abo/swiper). This is mainly related to the way I code in Matlab. When I implement a GUI, I regroup my functions definition under a group title (defined by "%%"). Therefore, I can simply read my code in Ivy like if I was using some code folding.
 
 Here is the result of the function in the ivy window:
@@ -104,6 +108,7 @@ Here is the result of the function in the ivy window:
 (add-hook 'matlab-mode-hook 'matlab-find-function-config)
 #+END_SRC
 
+** Ivy completion in shell
 I have also adapted the completion from the original code to ivy which is more convenient to me.
 #+BEGIN_SRC emacs-lisp
 ;;
